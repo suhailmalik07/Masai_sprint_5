@@ -11,7 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="bg-light p-2 fixed-top">
+    <nav class="bg-light p-2 sticky-top">
         <div class="row offset-lg-3 offset-md-0  offset-sm-0 ">
             <div class="col-sm-6 col-md-6 col-lg-2" id="index">
                 <h3 class="text-secondary font-weight-bolder" >MASAIGRAM</h3>
@@ -35,12 +35,61 @@
         </div>
     </nav>
 
-    <div class="container row" id="post">
-        <div class="col-8">
+    <div class="container row" id="width">
 
-        </div>
+        <div class="card col-sm-6 col-md-6 m-3 border-0 " data-toggle="modal" data-target="#exampleModalLong">
+            <div class="card-header "><img src="https://via.placeholder.com/20X20"> Soumitha</div>
+            <img src="https://via.placeholder.com/200X200" class="card-img-top" alt="...">
+            <div class="card-body border">
+              <p class="card-text"><span class="font-weight-bolder">Soumitha </span> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <img src="https://image.flaticon.com/icons/svg/833/833472.svg" class="imgWidth">
+              <img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="imgWidth">
+              <img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="imgWidth">
+            </div>
+          </div>
+
+          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Soumitha</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body card">
+                    
+                        <img src="https://via.placeholder.com/200X200" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <p class="card-text"><span class="font-weight-bolder">Soumitha </span> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <img src="https://image.flaticon.com/icons/svg/833/833472.svg" class="imgWidth">
+                        <img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="imgWidth">
+                        <img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="imgWidth">
+                    </div>
+                    <div id="comments">
+                       
+                        All comments
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card col-sm-12  col-md-6 m-3 border-0">
+            <div class="card-header "><img src="https://via.placeholder.com/20X20"> Soumitha</div>
+            <img src="https://via.placeholder.com/200X200" class="card-img-top" alt="...">
+            <div class="card-body border">
+              <p class="card-text"><span class="font-weight-bolder">Soumitha </span> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <img src="https://image.flaticon.com/icons/svg/833/833472.svg" class="imgWidth">
+              <img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="imgWidth">
+              <img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="imgWidth">
+            </div>
+          </div>
     </div>
-
+    <script src="js/random.js"></script>
     <script src="js/navLocation.js"></script>
 </body>
 </html>

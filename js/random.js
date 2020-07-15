@@ -26,7 +26,7 @@ function renderPost(res){
     //console.log(res[0])
     post.innerHTML = ""
 
-    for(i=0; i<res.length; i++){
+    for(i=res.length-1; i>=0; i--){
         let div = document.createElement("div")
 
         let card = renderCard(res[i])
@@ -71,3 +71,25 @@ function renderPostCard(target){
     let postCard = document.getElementById("cardPost")
     postCard.innerHTML = div
 }
+
+/**'<div class="card mb-3">' +
+        '<div class="card-header"><img src="https://via.placeholder.com/25X25" class = "rounded-circle"> ' + data.author + '</div>' +
+        '<img src=' + data.picture + ' class="card-img-top" alt="...">' +
+        '<div class="card-body">' +
+        '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +
+        '<div class = "row">' +
+        '<div class = "col-4 text-center">' +
+        '<img src="https://image.flaticon.com/icons/svg/833/833472.svg" id=' + data.id + "like" + ' class="mr-1 imgWidth">' +
+        '<p>' + data.likes.length + ' Likes</p>' +
+        '</div>' +
+        '<div class = "col-4 text-center">' +
+        '<img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" data-toggle="modal" data-target="#exampleModal" class="mr-1 imgWidth" id=' + data.id + "comment" + '>' +
+        '<p>' + data.comments.length + ' Comments</p>' +
+        '</div>' +
+        '<div class = "col-4 text-center">' +
+        '<img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="mr-1 imgWidth">' +
+        '<p> Share</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' */

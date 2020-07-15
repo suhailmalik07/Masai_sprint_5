@@ -1,15 +1,20 @@
-window.addEventListener("load", function(){
+window.addEventListener("load", function () {
+    if (!isUser()) {
+        location.href = 'login.html'
+        return
+    }
+
     let add = document.getElementById("add")
     add.addEventListener("click", addingNewPost)
 })
 
-function addingNewPost(){
+function addingNewPost() {
     let title = document.getElementById("title").value
-    let author = document.getElementById("author").value
+    let author = Logged.getUser().username
     let content = document.getElementById("content").value
     let picture = document.getElementById("picture").value
 
-    Post.create({title , author, content, picture})
+    Post.create({ title, author, content, picture })
 
     location.href = "index.html"
 }

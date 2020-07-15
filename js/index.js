@@ -41,7 +41,7 @@ function renderUser() {
 
     let div = '<div class="card bg-light shadow p-3 mb-5 bg-white rounded">' +
         `<div class="mb-0">${user.username}<br><small class="mt-0">${user.about || ""}</small></div><br>` +
-        `<img src="${user.profilePicture || "https://via.placeholder.com/250X250"}">` +
+        `<img src="${user.profilePicture || "resources/default.webp"}" class="pictureUser">` +
         '<p class="mt-3 text-secondary">Flowers : 20 <br> Likes : 200</p>' +
         '</div>'
 
@@ -134,10 +134,9 @@ function renderComments(postId) {
 
 function createComment(comment) {
     const li = document.createElement('li')
-    li.className = 'list-group-item'
+    li.className = 'list-group-item px-0'
 
-    const inner = `<p class="my-0 font-weight-bold">${comment.username}</p class="my-0">` +
-        `<p class="my-0">${comment.comment}</p>`
+    const inner = `<p class="mb-0"><span class="font-weight-bold mr-2">${comment.username}</span> ${comment.comment}</p class="my-0">`
 
     li.innerHTML = inner
     return li

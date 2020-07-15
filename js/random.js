@@ -15,6 +15,7 @@ window.addEventListener("load", function(){
         }
         else if(target[1] == "c"){
             renderPostCard(target[0])
+            console.log("yes")
             return
         }
 
@@ -45,7 +46,7 @@ function renderCard(data){
     }
 
 
-    console.log(data.comments)
+    //console.log(data.comments)
     
     let div = '<div class="card col-sm-6 col-md-8 m-3 border-0 ">' +
         `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>` +
@@ -73,7 +74,7 @@ function renderCard(data){
 }
 
 function addLikeToPost(target){
-    console.log(target)
+    //console.log(target)
 }
 
 function renderPostCard(target){

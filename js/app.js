@@ -287,8 +287,3 @@ Post.init()
 
 const Logged = new LoggedDB('logged')
 Logged.init()
-
-
-
-Post.addLike(0, { username: 'suhail' })
-console.log(Post.get(0))

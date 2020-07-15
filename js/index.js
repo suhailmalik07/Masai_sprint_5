@@ -25,8 +25,28 @@ function render() {
         }
     })
 
+    renderUser()
+
     let add = document.getElementById("add")
     add.addEventListener("click", addPost)
+}
+
+function renderUser(){
+
+    let user = Logged.getUser()
+
+    //console.log(user) 
+
+    let div = '<div class="card bg-light shadow p-3 mb-5 bg-white rounded">'+
+`<div class="mb-0">${user.username}<br><small class="mt-0">${user.about || ""}</small></div><br>`+
+`<img src="${user.profilePicture || "https://via.placeholder.com/250X250"}">`+
+'<p class="mt-3 text-secondary">Flowers : 20 <br> Likes : 200</p>'+
+'</div>'
+
+    let userDiv = document.getElementById("user")
+    userDiv.innerHTML = div
+
+
 }
 
 function renderPost(res) {
@@ -54,8 +74,10 @@ function renderCard(data) {
     }
 
 
+    console.log(data.comments)
+    
     let div = '<div class="card mb-3">' +
-        `<div class="card-header"><img src="${profilePicture}" class = "rounded-circle picture"> ${data.author} </div>` +
+        `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>` +
         '<img src=' + data.picture + ' class="card-img-top" alt="...">' +
         '<div class="card-body">' +
         '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +
@@ -85,8 +107,12 @@ function renderComment(target) {
     let com = document.getElementById("comment").value
 
     Post.addComment(target, user, com)
-    render()
-    document.getElementById("comment").value = ""
+
+   // render()
+
+    let temp = Post.all()
+    renderPost(temp)
+   // document.getElementById("comment").value = ""
 }
 
 function addLikeToPost(target) {

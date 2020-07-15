@@ -3,8 +3,10 @@
 }
 
 #post{
-    margin-top: 3.5%;
     margin-left: 20%;
+}
+#width{
+    margin-left: 30%;
 }
 
 #position{
@@ -14,9 +16,8 @@
 }
 
 @media (max-width : 700px){
-    #post{
+    #width{
         margin-left: 0%;
-        margin-top: 20%;
     }
     #index{
         text-align: center;

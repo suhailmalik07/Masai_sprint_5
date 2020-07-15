@@ -81,8 +81,9 @@ function handleUpdateForm(user) {
 
 
 function loadProfile(user) {
-    if (user.profile) {
-        document.getElementById('userImg').src = user.profile
+    user = Logged.getUser()
+    if (user.profilePicture) {
+        document.getElementById('userImg').src = user.profilePicture
     }
 
     document.getElementById('name').innerText = user.name

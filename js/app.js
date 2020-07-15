@@ -102,8 +102,8 @@ class Users extends DB {
             user.username = username || user.username
             user.password = password || user.password
             user.email = newEmail || user.email
-            user.profilePicture = profilePicture || user.profilePicture
-            user.about = about || user.about
+            user.profilePicture = profilePicture
+            user.about = about
         } catch (e) {
             throw new Error('Something wrong happened')
         }

@@ -16,16 +16,14 @@
             <div class="col-sm-6 col-md-6 col-lg-2" id="index">
                 <h3 class="text-secondary font-weight-bolder" >MASAIGRAM</h3>
             </div>
-            <div class="col-md-6 d-none d-md-block col-lg-4">
-                <input class="w-100 form-control" type="text" placeholder="Search Here!">
-            </div>
-            <div class="col-sm-2 col-md-4 col-lg-1 offset-1 mt-1">
+           
+            <div class="col-sm-2 offset-sm-0 offset-md-5 col-md-4 col-lg-1 offset-1 mt-1">
                 <div class="row"> 
                     <div class="col-4" id="home">
-                        <img src="https://image.flaticon.com/icons/svg/2948/2948176.svg" class="imgWidth">
+                        <img src="https://image.flaticon.com/icons/svg/2948/2948176.svg" class= "imgWidth">
                     </div>
                     <div class="col-4" id="random">
-                        <img src="https://image.flaticon.com/icons/svg/860/860806.svg" class="imgWidth">
+                        <img src="https://image.flaticon.com/icons/svg/860/860806.svg" class= "imgWidth">
                     </div>
                     <div class="col-4" id="profile">
                         <img src="https://via.placeholder.com/25X25">
@@ -36,40 +34,26 @@
     </nav>
 
     <div class="container row" id="width">
+        <div id="posters">
 
-        <div class="card col-sm-6 col-md-6 m-3 border-0 " data-toggle="modal" data-target="#exampleModalLong">
-            <div class="card-header "><img src="https://via.placeholder.com/20X20"> Soumitha</div>
-            <img src="https://via.placeholder.com/200X200" class="card-img-top" alt="...">
-            <div class="card-body border">
-              <p class="card-text"><span class="font-weight-bolder">Soumitha </span> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <img src="https://image.flaticon.com/icons/svg/833/833472.svg" class="imgWidth">
-              <img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="imgWidth">
-              <img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="imgWidth">
-            </div>
-          </div>
-
-          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Soumitha</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <h5 class="modal-title" id="title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body card">
-                    
-                        <img src="https://via.placeholder.com/200X200" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <p class="card-text"><span class="font-weight-bolder">Soumitha </span> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <img src="https://image.flaticon.com/icons/svg/833/833472.svg" class="imgWidth">
-                        <img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="imgWidth">
-                        <img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="imgWidth">
+                    <div id="cardPost">
+
                     </div>
-                    <div id="comments">
-                       
+                    <div id="comments ">
                         All comments
-                    </div>
+                    </div>  
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -77,18 +61,9 @@
               </div>
             </div>
           </div>
+    
 
-          <div class="card col-sm-12  col-md-6 m-3 border-0">
-            <div class="card-header "><img src="https://via.placeholder.com/20X20"> Soumitha</div>
-            <img src="https://via.placeholder.com/200X200" class="card-img-top" alt="...">
-            <div class="card-body border">
-              <p class="card-text"><span class="font-weight-bolder">Soumitha </span> Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <img src="https://image.flaticon.com/icons/svg/833/833472.svg" class="imgWidth">
-              <img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="imgWidth">
-              <img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="imgWidth">
-            </div>
-          </div>
-    </div>
+    <script src="js/app.js"></script>
     <script src="js/random.js"></script>
     <script src="js/navLocation.js"></script>
 </body>

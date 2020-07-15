@@ -4,6 +4,12 @@
 
 .picture{
     width: 30px;
+    height: 30px;
+}
+
+.pictureSize{
+    width: 200px;
+    height: 200px;
 }
 
 #post{
@@ -33,4 +39,9 @@
     #index{
         text-align: center;
     }
+    .pictureSize{
+        width: 150px;
+        height: 150px;
+    }
+    
 }

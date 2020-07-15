@@ -37,17 +37,37 @@ function renderPost(res){
 }
 
 function renderCard(data){
-   
-    let div = '<div class="card col-sm-6 col-md-8 m-3 border-0 ">'+
-'<div class="card-header"><img src="https://via.placeholder.com/20X20"> ' + data.author + '</div>'+
-'<img src=' + data.picture + ' class="card-img-top" alt="...">'+
-'<div class="card-body">'+
-'<p class="card-text"><span class="font-weight-bolder">'+ data.author + ' </span> '+ data.content +'</p>'+
-'<img src="https://image.flaticon.com/icons/svg/833/833472.svg" id='+data.id + "like" + ' class="mr-1 imgWidth">'+
-'<img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="mr-1 imgWidth" id='+data.id + "comment" +' data-toggle="modal" data-target="#exampleModalLong">'+
-'<img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="mr-1 imgWidth">'+
-'</div>'+
-'</div>'
+    let profilePicture = User.all().find(user => user.username ==data.author)
+    if (profilePicture){
+        profilePicture = profilePicture.profilePicture
+    } else {
+        profilePicture = "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+    }
+
+
+    console.log(data.comments)
+    
+    let div = '<div class="card col-sm-6 col-md-8 m-3 border-0 ">' +
+        `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>` +
+        '<img src=' + data.picture + ' class="card-img-top" alt="...">' +
+        '<div class="card-body border">' +
+        '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +
+        '<div class = "row">' +
+        '<div class = "col-4 text-center">' +
+        '<img src="https://image.flaticon.com/icons/svg/833/833472.svg" id=' + data.id + "like" + ' class="mr-1 imgWidth">' +
+        '<p>' + data.likes.length + ' Likes</p>' +
+        '</div>' +
+        '<div class = "col-4 text-center">' +
+        '<img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" data-toggle="modal" data-target="#exampleModal" class="mr-1 imgWidth" id=' + data.id + "comment" + '>' +
+        '<p>' + data.comments.length + ' Comments</p>' +
+        '</div>' +
+        '<div class = "col-4 text-center">' +
+        '<img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="mr-1 imgWidth">' +
+        '<p> Share</p>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>'
 
     return div
 }
@@ -72,10 +92,10 @@ function renderPostCard(target){
     postCard.innerHTML = div
 }
 
-/**'<div class="card mb-3">' +
+/**'<div class="card col-sm-6 col-md-8 m-3 border-0 ">' +
         '<div class="card-header"><img src="https://via.placeholder.com/25X25" class = "rounded-circle"> ' + data.author + '</div>' +
         '<img src=' + data.picture + ' class="card-img-top" alt="...">' +
-        '<div class="card-body">' +
+        '<div class="card-body border">' +
         '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +
         '<div class = "row">' +
         '<div class = "col-4 text-center">' +
@@ -93,3 +113,15 @@ function renderPostCard(target){
         '</div>' +
         '</div>' +
         '</div>' */
+
+
+        /**'<div class="card col-sm-6 col-md-8 m-3 border-0 ">'+
+'<div class="card-header"><img src="https://via.placeholder.com/20X20"> ' + data.author + '</div>'+
+'<img src=' + data.picture + ' class="card-img-top" alt="...">'+
+'<div class="card-body">'+
+'<p class="card-text"><span class="font-weight-bolder">'+ data.author + ' </span> '+ data.content +'</p>'+
+'<img src="https://image.flaticon.com/icons/svg/833/833472.svg" id='+data.id + "like" + ' class="mr-1 imgWidth">'+
+'<img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" class="mr-1 imgWidth" id='+data.id + "comment" +' data-toggle="modal" data-target="#exampleModalLong">'+
+'<img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="mr-1 imgWidth">'+
+'</div>'+
+'</div>' */

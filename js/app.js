@@ -173,7 +173,6 @@ class Posts extends DB {
     }
 
     addLike(postId, user) {
-        const username = user.username
         // recieve post id and update likes list with username
         const posts = this.all()
 
@@ -181,8 +180,8 @@ class Posts extends DB {
         const indx = post.index
         delete post.index
 
-        if (!post.likes.find(username => username == username)) {
-            post.likes.push(username)
+        if (!post.likes.find((username) => username == user.username)) {
+            post.likes.push(user.username)
             posts[indx] = post
             this.updateDB(posts)
         }

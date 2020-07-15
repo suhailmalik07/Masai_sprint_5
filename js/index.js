@@ -24,7 +24,6 @@ function renderDOM() {
             addLikeToPost(Number(target[0]))
         }
         if (target[1] == "comment") {
-            let add = document.getElementById("addCom")
             selectedId = Number(target[0])
             renderComments(selectedId)
         }

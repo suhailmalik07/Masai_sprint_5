@@ -31,7 +31,7 @@ class Users extends DB {
         const users = this.all()
         // check if username or email is already exists
         if (username && users.find((user => user.username == username))) {
-            console.log(username)
+            // console.log(username)
             return true
         } else if (users.find((user => user.email == email))) {
             return true
@@ -53,7 +53,7 @@ class Users extends DB {
 
         // add user to database
         users.push({
-            name, email, username, password, profilePicture
+            name, email, username, password, profilePicture, about: ''
         })
 
         this.updateDB(users)
@@ -79,7 +79,7 @@ class Users extends DB {
         return user
     }
 
-    update({ name, username, password, email, newEmail, profilePicture }) {
+    update({ name, username, password, email, newEmail, profilePicture, about }) {
         // this will update user profile whichever in it.. email is mandatory
         if (!email) {
             throw new Error('Email is mandatory! if you want to update email add it as newEmail')
@@ -102,7 +102,8 @@ class Users extends DB {
             user.username = username || user.username
             user.password = password || user.password
             user.email = newEmail || user.email
-            user.profilePicture = profilePicture || user.profilePicture
+            user.profilePicture = profilePicture
+            user.about = about
         } catch (e) {
             throw new Error('Something wrong happened')
         }
@@ -254,7 +255,11 @@ class LoggedDB {
     }
 
     getUser() {
-        return JSON.parse(this.db.getItem(this.name))
+        const email = JSON.parse(this.db.getItem(this.name)).email
+        if (!email) {
+            return false
+        }
+        return User.get(email)
     }
 
     setUser({ email, password }) {
@@ -272,7 +277,7 @@ class LoggedDB {
 }
 
 function isUser() {
-    if (Logged.getUser().email) {
+    if (Logged.getUser()) {
         return true
     } else {
         return false

@@ -15,6 +15,10 @@
     margin-left: 63%;
 }
 
+.h-100{
+    min-height: 100vh;
+}
+
 @media (max-width : 700px){
     #width{
         margin-left: 0%;

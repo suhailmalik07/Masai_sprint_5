@@ -18,11 +18,20 @@ function renderDOM() {
 
 function renderUser() {
     let user = Logged.getUser()
+    let res = Post.all()
+
+    let postCount = 0
+
+    for (i = res.length - 1; i >= 0; i--) {
+        if (user.username == res[i].author) {
+            postCount++
+        }
+    }
 
     let div = '<div class="card bg-light shadow p-3 mb-5 bg-white rounded">' +
         `<div class="mb-0">${user.username}<br><small class="mt-0">${user.about || ""}</small></div><br>` +
         `<img src="${user.profilePicture || "resources/default.webp"}" class="pictureUser">` +
-        '<p class="mt-3 text-secondary">Flowers : 20 <br> Likes : 200</p>' +
+        `<p class="mt-3 text-secondary"> Flowers : ${user.followers.length}<br> Following : ${user.followings.length} <br> Post : ${postCount}</p>`+
         '</div>'
 
     let profile = document.getElementById("userProfile")

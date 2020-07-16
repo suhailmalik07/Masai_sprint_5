@@ -43,13 +43,32 @@
         </div>
     </nav>
 
+    <div class="container pt-3">
+        <div class="row">
+            <div class="h2 text-secondary offset-2 col-4 font-weight-bold">
+                Home
+            </div>
+            <div class="offset-1 pl-lg-5 col-5">
+                <span class="font-weight-bold">Sort :</span>
+                <select id="sort" class="p-1">Sort here
+                    <option value="default">Default</option>
+                    <option value="likes">Likes</option>
+                    <option values="comments">Comments</option>
+                    <option value="latestComments">Latest Comments</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-sm-12 offset-md-1 col-md-10 col-lg-7 p-2" id="posters">
 
             </div>
             <div class="d-none d-lg-block col-lg-4 p-5  ">
-                <div id="user">
+                
+                <div id="user" class="mt-3">
 
                 </div>
                 <button class="btn btn-secondary" id="add">Add Post</button>

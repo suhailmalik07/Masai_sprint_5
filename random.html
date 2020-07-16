@@ -43,15 +43,22 @@
         </div>
     </nav>
 
-    <div class="row text-center">
-        <div class="offset-lg-8 p-2"><span class="font-weight-bold">Sort :</span>
-            <select id="sort" class="p-1">Sort here
-                <option value="default">Default</option>
-                <option value="likes">Likes</option>
-                <option values="comments">Comments</option>
-                <option value="latestComments">Latest Comments</option>
-            </select>
+    <div class="container pt-3">
+        <div class="row">
+            <div class="h2 text-secondary offset-2 col-4 font-weight-bold">
+                Explore
             </div>
+            <div class="offset-1 pl-lg-5 col-5">
+                <span class="font-weight-bold">Sort :</span>
+                <select id="sort" class="p-1">Sort here
+                    <option value="default">Default</option>
+                    <option value="likes">Likes</option>
+                    <option values="comments">Comments</option>
+                    <option value="latestComments">Latest Comments</option>
+                </select>
+            </div>
+        </div>
+
     </div>
 
     <div class="container" id="width">
@@ -61,7 +68,7 @@
             </div>
         </div>
     </div>
-   
+
     <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

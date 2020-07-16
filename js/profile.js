@@ -41,62 +41,23 @@ window.onload = function () {
 }
 
 function renderPost() {
-    let res = Post.all()
-    let post = document.getElementById("posters")
-    post.innerHTML = ""
+    let username = Logged.getUser().username
+    let posts = Post.all().filter(item => item.author == username)
 
-    let userName = Logged.getUser()
+    let postsDiv = document.getElementById("posters")
+    postsDiv.innerHTML = ""
 
-  //  console.log(userName.username)
 
-    for (i = res.length - 1; i >= 0; i--) {
-        if (userName.username == res[i].author) {
-            let div = document.createElement("div")
-            div.setAttribute("class", "row")
+    const frag = document.createDocumentFragment()
 
-            let card = renderCard(res[i])
-
-            div.innerHTML = card
-            post.append(div)
-        }
-    }
-}
-
-function renderCard(data) {
-    let profilePicture = User.all().find(user => user.username == data.author)
-    if (profilePicture) {
-        profilePicture = profilePicture.profilePicture
-    } else {
-        profilePicture = "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+    for (i = posts.length - 1; i >= 0; i--) {
+        const card = createCard(posts[i])
+        frag.appendChild(card)
     }
 
-
-   // console.log(data.comments)
-
-    let div = '<div class="card col-sm-12 col-md-11 m-3 ml-4 border-0 ">' +
-        `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>` +
-        '<img src=' + data.picture + ' class="card-img-top" alt="...">' +
-        '<div class="card-body border">' +
-        '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +
-        '<div class = "row">' +
-        '<div class = "col-4 text-center">' +
-        '<img src="https://image.flaticon.com/icons/svg/833/833472.svg" id=' + data.id + "like" + ' class="mr-1 imgWidth">' +
-        '<p>' + data.likes.length + ' Likes</p>' +
-        '</div>' +
-        '<div class = "col-4 text-center">' +
-        '<img src="https://image.flaticon.com/icons/svg/2636/2636351.svg" data-toggle="modal" data-target="#exampleModal" class="mr-1 imgWidth" id=' + data.id + "comment" + '>' +
-        '<p>' + data.comments.length + ' Comments</p>' +
-        '</div>' +
-        '<div class = "col-4 text-center">' +
-        '<img src="https://image.flaticon.com/icons/svg/1828/1828960.svg" class="mr-1 imgWidth">' +
-        '<p> Share</p>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</div>'
-
-    return div
+    postsDiv.appendChild(frag)
 }
+
 
 function updateUser(user) {
     user = Logged.getUser()
@@ -150,12 +111,12 @@ function loadProfile(user) {
     if (user.profilePicture) {
         document.getElementById('userImg').src = user.profilePicture
     }
-    
+
     let postCount = 0
 
     for (i = res.length - 1; i >= 0; i--) {
         if (user.username == res[i].author) {
-            postCount ++
+            postCount++
         }
     }
 
@@ -193,8 +154,8 @@ function updatePassword(user) {
     }
 }
 
-function renderProfilePicture(pic = "resources/default.webp"){
+function renderProfilePicture(pic = "resources/default.webp") {
 
     let profile = document.getElementById("userProfile")
-    profile.setAttribute("src" , pic)
+    profile.setAttribute("src", pic)
 }

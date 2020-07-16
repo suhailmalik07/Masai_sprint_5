@@ -305,12 +305,12 @@ Logged.init()
 
 function createCard(data) {
     const card = document.createElement("div")
-    let profilePicture = User.all().find(user => user.username == data.author).profilePicture
+    let profilePicture = User.all().find(user => user.username == data.author)
 
     if (!profilePicture) {
         profilePicture = "resources/default.webp"
     } else {
-        profilePicture = profilePicture
+        profilePicture = profilePicture.profilePicture
     }
 
     const user = Logged.getUser()

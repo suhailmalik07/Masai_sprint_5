@@ -12,6 +12,7 @@ window.addEventListener("load", () => {
         addCommentToPost(selectedId)
         $('#commentModal').modal('toggle');
     })
+
 })
 
 function renderDOM() {
@@ -45,6 +46,9 @@ function renderUser() {
         '<p class="mt-3 text-secondary">Flowers : 20 <br> Likes : 200</p>' +
         '</div>'
 
+    let profile = document.getElementById("userProfile")
+    profile.setAttribute("src" , user.profilePicture || "resources/default.webp")
+
     let userDiv = document.getElementById("user")
     userDiv.innerHTML = div
 
@@ -52,6 +56,7 @@ function renderUser() {
 }
 
 function renderPosts(posts) {
+    //console.log(posts)
     postsDiv.innerHTML = ""
 
     const frag = document.createDocumentFragment()

@@ -17,11 +17,9 @@
     height: 250px;
 }
 
-#post{
-    margin-left: 20%;
-}
+
 #width{
-    margin-left: 30%;
+    margin-top: 1%;
 }
 
 #position{
@@ -34,13 +32,7 @@
     min-height: 100vh;
 }
 
-@media (max-width : 700px){
-    #width{
-        margin-left: 0%;
-    }
-    #post{
-        margin-left: 0%;
-    }
+@media (max-width : 1000px){
     #index{
         text-align: center;
     }

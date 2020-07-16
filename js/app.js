@@ -312,7 +312,14 @@ function createCard(data) {
     }
 
     let div = '<div class="card mb-3">' +
-        `<div class="card-header"><img src="${profilePicture}" class = "rounded-circle picture"> ${data.author} </div>`
+        `<div class="card-header"><img src="${profilePicture}" class = "rounded-circle picture"> ${data.author}`
+        if(data.author != user.username){
+            div += `<span class="badge badge-primary mr-2 mt-2 float-right">Follow</span>`
+        }
+        else if(0){
+            div += `<span class="badge badge-primary mr-2 mt-2 float-right">Following</span>`
+        }
+        div +=`</div>`
     if (data.picture) {
         div += '<img src=' + data.picture + ' class="card-img-top" alt="...">'
     }

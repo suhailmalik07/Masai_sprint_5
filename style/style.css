@@ -1,5 +1,5 @@
 .imgWidth{
-    width: 20px;
+    width: 25px;
 }
 
 .picture{
@@ -17,6 +17,15 @@
     height: 250px;
 }
 
+.activePhoto{
+    width: 35px;
+    height: 35px;
+}
+
+.active{
+    width: 30px;
+    height: 30px;
+}
 
 #width{
     margin-top: 1%;

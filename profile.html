@@ -204,6 +204,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Write Your Comment Here</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="addCommentForm" id="addCommentForm">
+                        <textarea id="comment" name="comment" class="inputText"></textarea>
+                        <button class="btn btn-primary p-2" type="submit">Comment</button>
+                    </form>
+                    <div class="mt-2">
+                        <h5>Comments</h5>
+                        <ul class="list-group list-group-flush" id="comments">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/app.js"></script>
     <script src="js/navLocation.js"></script>
     <script src="js/profile.js"></script>

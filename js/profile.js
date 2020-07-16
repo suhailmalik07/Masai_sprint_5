@@ -36,27 +36,25 @@ window.onload = function () {
         updatePassword(user)
     })
 
-    renderPost()
+    renderDOM()
+
+    // mange lies and commnets
+    manageLikeAndComment(document.getElementById('posters'))
+
+    // manage commmentsform
+    manageCommnetsForm(document.getElementById('addCommentForm'))
 
 }
 
-function renderPost() {
-    let username = Logged.getUser().username
-    let posts = Post.all().filter(item => item.author == username)
 
+function renderDOM() {
+    const user = Logged.getUser()
+    const posts = Post.all().filter(item => item.author == user.username)
     let postsDiv = document.getElementById("posters")
-    postsDiv.innerHTML = ""
 
-
-    const frag = document.createDocumentFragment()
-
-    for (i = posts.length - 1; i >= 0; i--) {
-        const card = createCard(posts[i])
-        frag.appendChild(card)
-    }
-
-    postsDiv.appendChild(frag)
+    renderPosts(posts, postsDiv)
 }
+
 
 
 function updateUser(user) {
@@ -73,8 +71,6 @@ function updateUser(user) {
         profilePicture,
         about
     }
-
-    // console.log(payload)
 
     // if username is different
     if (user.username != username) {
@@ -102,8 +98,6 @@ function handleUpdateForm(user) {
     renderProfilePicture(user.profilePicture)
 
 }
-
-
 
 function loadProfile(user) {
     let res = Post.all()
@@ -155,7 +149,6 @@ function updatePassword(user) {
 }
 
 function renderProfilePicture(pic = "resources/default.webp") {
-
     let profile = document.getElementById("userProfile")
     profile.setAttribute("src", pic)
 }

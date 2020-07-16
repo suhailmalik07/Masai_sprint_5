@@ -190,7 +190,7 @@ class Posts extends DB {
     getLike(postId, user) {
         // this will return true if user already liked this post
         const username = user.username
-        const post = get(postId)
+        const post = this.get(postId)
 
         if (post.likes.find(item => item == username)) {
             return true
@@ -199,15 +199,14 @@ class Posts extends DB {
     }
 
     removeLike(postId, user) {
-        const username = user.username
         // recieve post id and remove like with username
         const posts = this.all()
 
-        const post = get(postId)
+        const post = this.get(postId)
         const indx = post.index
         delete post.index
 
-        post.likes = post.likes.filter(item => item.username != username)
+        post.likes = post.likes.filter(item => item != user.username)
         posts[indx] = post
         this.updateDB(posts)
     }
@@ -297,14 +296,17 @@ Logged.init()
 function createCard(data) {
     const card = document.createElement("div")
     let profilePicture = User.all().find(user => user.username == data.author)
-    if (profilePicture) {
-        profilePicture = profilePicture.profilePicture
+
+    const user = Logged.getUser()
+    let likeURL;
+    if (!Post.getLike(data.id, user)) {
+        likeURL = 'https://image.flaticon.com/icons/svg/833/833300.svg'
     } else {
-        profilePicture = "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+        likeURL = 'https://image.flaticon.com/icons/svg/833/833472.svg'
     }
 
     let div = '<div class="card mb-3">' +
-        `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>`
+        `<div class="card-header"><img src="${profilePicture}" class = "rounded-circle picture"> ${data.author} </div>`
     if (data.picture) {
         div += '<img src=' + data.picture + ' class="card-img-top" alt="...">'
     }
@@ -312,7 +314,7 @@ function createCard(data) {
         '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +
         '<div class = "row">' +
         '<div class = "col-4 text-center">' +
-        '<img src="https://image.flaticon.com/icons/svg/833/833472.svg" id=' + data.id + ",like" + ' class="mr-1 imgWidth">' +
+        `<img src="${likeURL}" id=` + data.id + ",like" + ' class="mr-1 imgWidth">' +
         '<p>' + data.likes.length + ' Likes</p>' +
         '</div>' +
         '<div class = "col-4 text-center">' +
@@ -329,4 +331,92 @@ function createCard(data) {
 
     card.innerHTML = div
     return card
+}
+
+function addLikeToPost(postId) {
+    let user = Logged.getUser()
+    if (!Post.getLike(postId, user)) {
+        Post.addLike(postId, user)
+    } else {
+        Post.removeLike(postId, user)
+    }
+    renderDOM()
+}
+
+function manageLikeAndComment(postsDiv) {
+    // add event listener for commnet and likes
+    postsDiv.addEventListener("click", function () {
+        let target = (event.target.id).split(',')
+        console.log(target)
+
+        if (target[1] == "like") {
+            addLikeToPost(Number(target[0]))
+        }
+        if (target[1] == "comment") {
+            // load comments
+            const commnetsDiv = document.getElementById('comments')
+            // console.log(commnetsDiv)
+            selectedId = Number(target[0])
+            renderComments(selectedId, commnetsDiv)
+        }
+    })
+}
+
+function renderProfilePicture() {
+    let user = Logged.getUser()
+
+    let profile = document.getElementById("userProfile")
+    profile.setAttribute("src", user.profilePicture || "resources/default.webp")
+}
+
+function renderPosts(posts, postsDiv) {
+    postsDiv.innerHTML = ""
+
+    const frag = document.createDocumentFragment()
+
+    for (i = posts.length - 1; i >= 0; i--) {
+        const card = createCard(posts[i])
+        frag.appendChild(card)
+    }
+    postsDiv.appendChild(frag)
+}
+
+function manageCommnetsForm(target) {
+    // add event listener to add commnet form
+    target.addEventListener('submit', () => {
+        event.preventDefault()
+
+        const formData = new FormData(event.target)
+        const comment = formData.get('comment')
+        const user = Logged.getUser()
+
+        Post.addComment(selectedId, user, comment)
+        event.target.reset
+        renderDOM()
+        $('#commentModal').modal('toggle');
+    })
+}
+
+function renderComments(postId, target) {
+    target.innerHTML = ""
+    const frag = document.createDocumentFragment()
+
+    const comments = Post.get(postId).comments
+
+    for (let i = comments.length - 1; i >= 0; i--) {
+        const comment = createComment(comments[i])
+        frag.appendChild(comment)
+    }
+    target.appendChild(frag)
+    console.log(target)
+}
+
+function createComment(comment) {
+    const li = document.createElement('li')
+    li.className = 'list-group-item px-0'
+
+    const inner = `<p class="mb-0"><span class="font-weight-bold mr-2">${comment.username}</span> ${comment.comment}</p class="my-0">`
+
+    li.innerHTML = inner
+    return li
 }

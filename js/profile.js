@@ -115,8 +115,8 @@ function loadProfile(user) {
     }
 
     document.getElementById('name').innerText = user.name
-    document.getElementById('followers').innerText = user.followers || 0
-    document.getElementById('following').innerText = user.following || 0
+    document.getElementById('followers').innerText = user.followers.length || 0
+    document.getElementById('following').innerText = user.followings.length || 0
     document.getElementById('posts').innerText = postCount || 0
     document.getElementById('about').innerText = user.about || 'Nothing here'
 }

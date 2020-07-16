@@ -363,7 +363,6 @@ function manageLikeAndComment(postsDiv) {
     // add event listener for commnet and likes
     postsDiv.addEventListener("click", function () {
         let target = (event.target.id).split(',')
-        console.log(target)
 
         if (target[1] == "like") {
             addLikeToPost(Number(target[0]))
@@ -390,10 +389,10 @@ function renderPosts(posts, postsDiv) {
 
     const frag = document.createDocumentFragment()
 
-    for (i = posts.length - 1; i >= 0; i--) {
-        const card = createCard(posts[i])
+    posts.forEach(post => {
+        const card = createCard(post)
         frag.appendChild(card)
-    }
+    })
     postsDiv.appendChild(frag)
 }
 

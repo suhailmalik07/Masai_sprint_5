@@ -13,6 +13,6 @@ window.addEventListener("load", () => {
 
 function renderDOM() {
     renderProfilePicture()
-    renderPosts(Post.all(), postsDiv)
+    renderPosts(Post.all().reverse(), postsDiv)
 }
 

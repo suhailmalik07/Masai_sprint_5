@@ -5,6 +5,7 @@ let sorted;
 let postsDiv = document.getElementById("posters");
 
 window.addEventListener("load", () => {
+    if (user)
     renderDOM()
 
     // manange like and commnets
@@ -37,6 +38,14 @@ function renderDOM() {
                 return 0
             }
         })
+    }
+    if (Posts.length == 0){
+        const target = document.getElementById('posters')
+        const p = document.createElement('h4')
+        p.innerText = "You didn't followed someone?"
+        p.className = 'text-muted text-center'
+        target.appendChild(p)
+        return
     }
     renderPosts(Posts.reverse(), postsDiv)
     renderUser()

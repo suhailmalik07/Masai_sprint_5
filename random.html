@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="bg-light p-2 sticky-top">
         <div class="row offset-lg-3 offset-md-0  offset-sm-0 ">
             <div class="col-sm-6 col-md-6 col-lg-2" id="index">
-                <h3 class="text-secondary font-weight-bolder" >MASAIGRAM</h3>
+                <h3 class="text-secondary font-weight-bolder">MASAIGRAM</h3>
             </div>
-           
+
             <div class="col-sm-2 offset-sm-0 offset-md-5 col-md-4 col-lg-1 offset-1 mt-1">
-                <div class="row"> 
+                <div class="row">
                     <div class="col-4 text-center" id="home">
-                        <img src="https://image.flaticon.com/icons/svg/2948/2948176.svg" class= "imgWidth">
+                        <img src="https://image.flaticon.com/icons/svg/2948/2948176.svg" class="imgWidth">
                     </div>
                     <div class="col-4 text-center" id="random">
-                        <img src="https://image.flaticon.com/icons/svg/860/860806.svg" class= "imgWidth">
+                        <img src="https://image.flaticon.com/icons/svg/860/860806.svg" class="imgWidth">
                     </div>
                     <div class="col-4 text-center" id="profile">
-                        <img src="https://via.placeholder.com/25X25">
+                        <img id="userProfile" class="rounded-circle picture">
                     </div>
                 </div>
             </div>
@@ -39,11 +48,12 @@
 
         </div>
     </div>
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="title"></h5>
+                    <h5 class="modal-title" id="title">oye</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -52,20 +62,47 @@
                     <div id="cardPost">
 
                     </div>
-                    <div id="comments ">
-                        All comments
-                    </div>  
+                    <div id="comments">
+
+                    </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-              </div>
             </div>
-          </div>
-    
+        </div>
+    </div>
+
+    <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Write Your Comment Here</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="addCommentForm" id="addCommentForm">
+                        <textarea id="comment" class="inputText"></textarea>
+                        <button class="btn btn-primary p-2" type="submit">Comment</button>
+                    </form>
+                    <div class="mt-2">
+                        <h5>Comments</h5>
+                        <ul class="list-group list-group-flush" id="comment">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="js/app.js"></script>
     <script src="js/random.js"></script>
     <script src="js/navLocation.js"></script>
 </body>
+
 </html>

@@ -47,7 +47,7 @@ function renderPost() {
 
     let userName = Logged.getUser()
 
-    console.log(userName.username)
+  //  console.log(userName.username)
 
     for (i = res.length - 1; i >= 0; i--) {
         if (userName.username == res[i].author) {
@@ -71,7 +71,7 @@ function renderCard(data) {
     }
 
 
-    console.log(data.comments)
+   // console.log(data.comments)
 
     let div = '<div class="card col-sm-12 col-md-11 m-3 ml-4 border-0 ">' +
         `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>` +
@@ -135,22 +135,34 @@ function updateUser(user) {
 function handleUpdateForm(user) {
     document.getElementById('updateName').value = user.name
     document.getElementById('username').value = user.username
-    document.getElementById('profilePicture').value = user.profilePicture || ""
+    document.getElementById('profilePicture').value = user.profilePicture || "resources/default.webp"
     document.getElementById('aboutMe').value = user.about || ""
+
+    renderProfilePicture(user.profilePicture)
+
 }
 
 
 
 function loadProfile(user) {
+    let res = Post.all()
     user = Logged.getUser()
     if (user.profilePicture) {
         document.getElementById('userImg').src = user.profilePicture
+    }
+    
+    let postCount = 0
+
+    for (i = res.length - 1; i >= 0; i--) {
+        if (user.username == res[i].author) {
+            postCount ++
+        }
     }
 
     document.getElementById('name').innerText = user.name
     document.getElementById('followers').innerText = user.followers || 0
     document.getElementById('following').innerText = user.following || 0
-    document.getElementById('posts').innerText = user.posts || 0
+    document.getElementById('posts').innerText = postCount || 0
     document.getElementById('about').innerText = user.about || 'Nothing here'
 }
 
@@ -179,4 +191,10 @@ function updatePassword(user) {
     } catch (error) {
         alert(error)
     }
+}
+
+function renderProfilePicture(pic = "resources/default.webp"){
+
+    let profile = document.getElementById("userProfile")
+    profile.setAttribute("src" , pic)
 }

@@ -52,7 +52,7 @@ function renderDOM() {
     const posts = Post.all().filter(item => item.author == user.username)
     let postsDiv = document.getElementById("posters")
 
-    renderPosts(posts, postsDiv)
+    renderPosts(posts.reverse(), postsDiv)
 }
 
 

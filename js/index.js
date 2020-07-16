@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 })
 
 function renderDOM() {
-    renderPosts(Post.all(), postsDiv)
+    renderPosts(Post.all().reverse(), postsDiv)
     renderUser()
 }
 

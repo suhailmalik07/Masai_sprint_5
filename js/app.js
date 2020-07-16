@@ -79,14 +79,14 @@ class Users extends DB {
         return user
     }
 
-    update({ name, username, password, email, newEmail, profilePicture, about }) {
+    update({ name, username, newUsername, password, email, newEmail, profilePicture, about, followers, followings }) {
         // this will update user profile whichever in it.. email is mandatory
         if (!email) {
             throw new Error('Email is mandatory! if you want to update email add it as newEmail')
         }
 
         // check if new email or username same as previous user
-        if (this.isExists(newEmail, username)) {
+        if (this.isExists(newEmail, newUsername)) {
             throw new Error('User already exists with this email or username!')
         }
 
@@ -104,6 +104,8 @@ class Users extends DB {
             user.email = newEmail || user.email
             user.profilePicture = profilePicture || 'resources/default.webp'
             user.about = about
+            user.followers = followers || user.followers
+            user.followings = followings || user.followings
         } catch (e) {
             throw new Error('Something wrong happened')
         }
@@ -117,15 +119,47 @@ class Users extends DB {
         return true
     }
 
-    // follow(user) {
-    //     user = User.get(user.email)
-    //     const currUser = Logged.getUser()
+    follow(user, currUser) {
+        user = User.get(user.email)
 
-    //     const indx = user.index
-    //     user.foll
-    //     User.update()
-    //     this.update()
-    // }
+        // add to the user followers list
+        if (!user.followers) {
+            user.followers = []
+        }
+
+        if (!user.followers.includes(currUser.username)) {
+            user.followers.push(currUser.username)
+            User.update(user)
+        }
+
+        // add to users following list
+        if (!currUser.followings) {
+            currUser.followings = []
+        }
+        if (!currUser.followings.includes(user.username)) {
+            currUser.followings.push(user.username)
+            User.update(currUser)
+        }
+    }
+
+    unFollow(user, currUser) {
+        user = User.get(user.email)
+
+        // add to the user followers list
+        if (!user.followers) {
+            user.followers = []
+        }
+
+        user.followers = user.followers.filter(item => item != currUser.username)
+        User.update(user)
+
+        // add to users following list
+        if (!currUser.followings) {
+            currUser.followings = []
+        }
+        currUser.followings = currUser.followings.filter(item => item != user.username)
+        User.update(currUser)
+    }
 }
 
 class Posts extends DB {
@@ -284,6 +318,31 @@ class LoggedDB {
     }
 }
 
+function follow(user) {
+    User.follow(user, Logged.getUser())
+}
+
+function unFollow(user) {
+    User.unFollow(user, Logged.getUser())
+}
+
+function isFollow(user) {
+    const currUser = Logged.getUser()
+    user = User.get(user.email)
+    if (user.followers.includes(currUser.username)) {
+        return true
+    }
+    return false
+}
+
+function followUnfollow(user) {
+    if (isFollow(user)) {
+        unFollow(user)
+    } else {
+        follow(user)
+    }
+}
+
 function isUser() {
     if (Logged.getUser()) {
         return true
@@ -300,7 +359,6 @@ Post.init()
 
 const Logged = new LoggedDB('logged')
 Logged.init()
-
 
 
 function createCard(data) {

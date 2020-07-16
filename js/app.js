@@ -53,7 +53,7 @@ class Users extends DB {
 
         // add user to database
         users.push({
-            name, email, username, password, profilePicture, about: ''
+            name, email, username, password, profilePicture: "resources/default.webp", about: '', followers: [], followings: []
         })
 
         this.updateDB(users)
@@ -102,7 +102,7 @@ class Users extends DB {
             user.username = username || user.username
             user.password = password || user.password
             user.email = newEmail || user.email
-            user.profilePicture = profilePicture
+            user.profilePicture = profilePicture || 'resources/default.webp'
             user.about = about
         } catch (e) {
             throw new Error('Something wrong happened')
@@ -116,6 +116,16 @@ class Users extends DB {
 
         return true
     }
+
+    // follow(user) {
+    //     user = User.get(user.email)
+    //     const currUser = Logged.getUser()
+
+    //     const indx = user.index
+    //     user.foll
+    //     User.update()
+    //     this.update()
+    // }
 }
 
 class Posts extends DB {

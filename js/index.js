@@ -20,9 +20,10 @@ window.addEventListener("load", () => {
 })
 
 function renderDOM() {
-    const userFollowings = Logged.getUser().followings
+    const currUser = Logged.getUser()
+    const userFollowings = currUser.followings
     let Posts = Post.all().filter(post => {
-        if (userFollowings.includes(post.author)) {
+        if (userFollowings.includes(post.author) || post.author == currUser.username) {
             return true
         }
     })

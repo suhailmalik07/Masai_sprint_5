@@ -20,7 +20,12 @@ window.addEventListener("load", () => {
 })
 
 function renderDOM() {
-    let Posts = Post.all()
+    const userFollowings = Logged.getUser().followings
+    let Posts = Post.all().filter(post => {
+        if (userFollowings.includes(post.author)) {
+            return true
+        }
+    })
     if (sorted) {
         Posts = Posts.sort((a, b) => {
             if (a[sorted].length > b[sorted].length) {
@@ -51,7 +56,7 @@ function renderUser() {
     let div = '<div class="card bg-light shadow p-3 mb-5 bg-white rounded">' +
         `<div class="mb-0">${user.username}<br><small class="mt-0">${user.about || ""}</small></div><br>` +
         `<img src="${user.profilePicture || "resources/default.webp"}" class="pictureUser">` +
-        `<p class="mt-3 text-secondary"> Flowers : ${user.followers.length}<br> Following : ${user.followings.length} <br> Post : ${postCount}</p>`+
+        `<p class="mt-3 text-secondary"> Flowers : ${user.followers.length}<br> Following : ${user.followings.length} <br> Post : ${postCount}</p>` +
         '</div>'
 
     let profile = document.getElementById("userProfile")

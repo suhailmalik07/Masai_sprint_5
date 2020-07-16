@@ -381,13 +381,15 @@ function createCard(data) {
 
     let div = '<div class="card mb-3">' +
         `<div class="card-header"><img src="${profilePicture}" class = "rounded-circle picture"> ${data.author}`
-        if(data.author != user.username){
-            div += `<span class="badge badge-primary mr-2 mt-2 float-right">Follow</span>`
+    if (data.author != user.username) {
+        const postUser = User.all().find(item => item.username == data.author)
+        if (isFollow(postUser)) {
+            div += `<span id="${data.id},unFollow" class="badge badge-primary mr-2 mt-2 float-right">Following</span>`
+        } else {
+            div += `<span id="${data.id},follow" class="badge badge-primary mr-2 mt-2 float-right">Follow</span>`
         }
-        else if(0){
-            div += `<span class="badge badge-primary mr-2 mt-2 float-right">Following</span>`
-        }
-        div +=`</div>`
+    }
+    div += `</div>`
     if (data.picture) {
         div += '<img src=' + data.picture + ' class="card-img-top" alt="...">'
     }
@@ -432,12 +434,17 @@ function manageLikeAndComment(postsDiv) {
         if (target[1] == "like") {
             addLikeToPost(Number(target[0]))
         }
-        if (target[1] == "comment") {
+        else if (target[1] == "comment") {
             // load comments
             const commnetsDiv = document.getElementById('comments')
             // console.log(commnetsDiv)
             selectedId = Number(target[0])
             renderComments(selectedId, commnetsDiv)
+        } else if (target[1] == 'follow' || target[1] == 'unFollow') {
+            const postAuthor = Post.get(Number(target[0])).author
+            const postUser = User.all().find(item => item.username == postAuthor)
+            followUnfollow(postUser)
+            renderDOM()
         }
     })
 }

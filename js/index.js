@@ -6,7 +6,7 @@ let postsDiv = document.getElementById("posters");
 
 window.addEventListener("load", () => {
     if (user)
-    renderDOM()
+        renderDOM()
 
     // manange like and commnets
     manageLikeAndComment(postsDiv)
@@ -39,12 +39,13 @@ function renderDOM() {
             }
         })
     }
-    if (Posts.length == 0){
+    if (Posts.length == 0) {
         const target = document.getElementById('posters')
         const p = document.createElement('h4')
         p.innerText = "You didn't followed someone?"
         p.className = 'text-muted text-center'
         target.appendChild(p)
+        renderUser()
         return
     }
     renderPosts(Posts.reverse(), postsDiv)

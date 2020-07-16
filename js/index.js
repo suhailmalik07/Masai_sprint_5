@@ -1,6 +1,7 @@
 //Post.create({title:"The Cam", author:"Yanxi", content:"The Photograpy" , picture: "https://images.unsplash.com/photo-1480365501497-199581be0e66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"})
 let selectedId;
 let posters;
+let sorted;
 let postsDiv = document.getElementById("posters");
 
 window.addEventListener("load", () => {
@@ -9,10 +10,29 @@ window.addEventListener("load", () => {
     // manange like and commnets
     manageLikeAndComment(postsDiv)
     manageCommnetsForm(document.getElementById('addCommentForm'))
+
+    // handle sort button
+    let sort = document.getElementById("sort")
+    sort.addEventListener("change", () => {
+        sorted = event.target.value
+        renderDOM()
+    })
 })
 
 function renderDOM() {
-    renderPosts(Post.all().reverse(), postsDiv)
+    let Posts = Post.all()
+    if (sorted) {
+        Posts = Posts.sort((a, b) => {
+            if (a[sorted].length > b[sorted].length) {
+                return 1
+            } else if (a[sorted].length < b[sorted].length) {
+                return -1
+            } else {
+                return 0
+            }
+        })
+    }
+    renderPosts(Posts.reverse(), postsDiv)
     renderUser()
 }
 

@@ -95,11 +95,16 @@ function renderCard(data) {
         profilePicture = "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
     }
 
+    let user = Logged.getUser()
 
     //console.log(data.comments)
 
     let div = '<div class="card col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8 mt-3 border-0">' +
-        `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author} </div>` +
+        `<div class="card-header"><img src="${profilePicture || "https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"}" class = "rounded-circle picture"> ${data.author}`
+        if(user.username != data.author){
+            div +=`<span class="badge badge-primary mr-2 mt-2 float-right">Follow</span>`
+        }
+       div += `</div> `+
         '<img src=' + data.picture + ' data-toggle="modal" data-target="#exampleModalLong" id='+ data.id+' class="card-img-top" alt="...">' +
         '<div class="card-body border">' +
         '<p class="card-text"><span class="font-weight-bolder">' + data.author + ' </span> ' + data.content + '</p>' +

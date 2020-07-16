@@ -67,7 +67,7 @@ function renderUser() {
     let div = '<div class="card bg-light shadow p-3 mb-5 bg-white rounded">' +
         `<div class="mb-0">${user.username}<br><small class="mt-0">${user.about || ""}</small></div><br>` +
         `<img src="${user.profilePicture || "resources/default.webp"}" class="pictureUser">` +
-        `<p class="mt-3 text-secondary"> Flowers : ${user.followers.length}<br> Following : ${user.followings.length} <br> Post : ${postCount}</p>` +
+        `<p class="mt-3 text-secondary"> Followers :<span class="text-success font-weight-bold"> ${user.followers.length}</span><br> Followings :<span class="text-success font-weight-bold"> ${user.followings.length}</span> <br> Posts :<span class="text-success font-weight-bold"> ${postCount}</span></p>` +
         '</div>'
 
     let profile = document.getElementById("userProfile")

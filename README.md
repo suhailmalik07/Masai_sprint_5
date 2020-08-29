@@ -2,7 +2,7 @@
 
 This repo contains the source code for the MASAIGRAM.
 
-![Imgur](https://imgur.com/eTEnvb4)
+![Imgur](https://imgur.com/eTEnvb4.jpg)
 
 
 This website is available [here](https://soumitha18.github.io/Masai_sprint_5/) 
